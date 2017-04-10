@@ -1,0 +1,37 @@
+{
+    "name": "where-to-run-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "express": "^4.15.2",
+        "mongoose": "^4.7.1",
+        "morgan": "^1.7.0",
+        "uuid": "^2.0.3",
+        "unirest": "^0.5.1"
+    },
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "chai-http": "^3.0.0",
+        "faker": "^3.1.0",
+        "mocha": "^3.2.0"
+    },
+    "scripts": {
+        "test": "mocha",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/andreasadinata/where-to-hike-app.git"
+    },
+    "author": "Andreas Adinata",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/andreasadinata/where-to-hike-app/issues"
+    },
+    "homepage": "https://github.com/andreasadinata/where-to-hike-app#readme"
+}
