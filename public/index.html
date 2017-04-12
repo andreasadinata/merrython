@@ -11,9 +11,8 @@
     </header>
     <form class="js-zipcode">
         <label for="js-location" class="js-label">Enter Your Location: </label>
-        <input type="text" id="js-location">
-        <button class="js-submit-search">Enter!!</button>
-
+        <input type="text" id="jsLocation" value="95051">
+        <button type="submit" class="js-submit-search">Enter!!</button>
     </form>
     <section class="js-result">
         <ul></ul>
@@ -21,23 +20,25 @@
     <section class=js-list>
         <ul></ul>
     </section>
-    <footer class="js-comment">
+    <footer class="js-drop-comment">
         <form class="js-comment-form">
             <div class="instructions">Leave a comment here!!</div>
             <label for="js-name" class="js-label">Name:
                 <input type="text" id="js-name">
             </label>
-            <label for="js-event" class="js-label">Comment:
+            <label for="js-event" class="js-label">Event:
                 <input type="text" id="js-event">
             </label>
             <label for="js-content" class="js-label">Comment:
                 <input type="text" id="js-content">
             </label>
-
             <button class="js-submit-comment">Submit</button>
         </form>
-        <div class="thank-you">Thank You for the comment.</div>
+        <div class="thank-you">Thank you for your comment.</div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="client.js"></script>
 </body>
 
 </html>
