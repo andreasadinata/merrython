@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const commentSchema = mongoose.Schema({
+const CommentSchema = mongoose.Schema({
     username: {
         type: String
     },
@@ -15,13 +15,31 @@ const commentSchema = mongoose.Schema({
     },
     userComment: {
         type: String
+    },
+    __v: {
+        type: Number,
+        select: false
     }
 }, {
-    collection: 'where-to-hike-db'
+    versionKey: false
+}, {
+    collection: 'comment'
 });
 
-const comment = mongoose.model('comment', commentSchema);
+const Comment = mongoose.model('Comment', CommentSchema);
+
+CommentSchema.methods.apiRepr = function () {
+    return {
+        id: this._id,
+        username: this.username,
+        userLocation: this.userLocation,
+        postDate: this.postDate,
+        eventName: this.eventName,
+        userComment: this.userComment
+    };
+}
 
 module.exports = {
-    comment
+    Comment
+
 };

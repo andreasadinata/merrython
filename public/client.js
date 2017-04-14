@@ -1,17 +1,27 @@
 function displaySearchResults(data) {
     var buildTheHtmlOutput = "";
     $.each(data.results, function (dataKey, dataValue) {
-        buildTheHtmlOutput += '<li class="result">';
-        buildTheHtmlOutput += '<div class="event">';
-        buildTheHtmlOutput += dataValue.activityEndDate;
-        buildTheHtmlOutput += '<div>';
-        buildTheHtmlOutput += '<div class="location">';
-        buildTheHtmlOutput += '<div>';
-        buildTheHtmlOutput += '<div class="date">';
-        buildTheHtmlOutput += '<div>';
-        buildTheHtmlOutput += '<div class="description">';
-        buildTheHtmlOutput += '<div>';
-        buildTheHtmlOutput += '</li>';
+        if (dataValue.assetName !== "") {
+            buildTheHtmlOutput += '<li class="result">';
+            buildTheHtmlOutput += '<div class="eventName">';
+            buildTheHtmlOutput += dataValue.assetName;
+            buildTheHtmlOutput += '<div>';
+            buildTheHtmlOutput += '<div class="location">';
+            buildTheHtmlOutput += '<div class="address">';
+            buildTheHtmlOutput += dataValue.place.addressLine1Txt;
+            buildTheHtmlOutput += '<div>';
+            buildTheHtmlOutput += '<div class="city">';
+            buildTheHtmlOutput += dataValue.place.cityName.toUpperCase();
+            buildTheHtmlOutput += '<div>';
+            buildTheHtmlOutput += '<div>';
+            buildTheHtmlOutput += '<div class="date">';
+            buildTheHtmlOutput += dataValue.activityStartDate //ask marius about format once again
+            buildTheHtmlOutput += '<div>';
+            buildTheHtmlOutput += '<div class="description">';
+            buildTheHtmlOutput += dataValue.assetDescriptions[0]; //error
+            buildTheHtmlOutput += '<div>';
+            buildTheHtmlOutput += '</li>';
+        }
     })
     $(".js-result ul").html(buildTheHtmlOutput);
 }
@@ -22,21 +32,48 @@ function displayComment() {
             dataType: "json",
             url: '/active/'
         })
-        .done(function () {
-            //    var createTheHtmlOutput = "";
-            //    $.each(data, function (dataKey, dataValue) {
-            //        //        createTheHtmlOutput += '<li class="result">';
-            //        //        createTheHtmlOutput += '<div class="eventName">';
-            //        //        createTheHtmlOutput += '<div>';
-            //        //        createTheHtmlOutput += '<div class="location">';
-            //        //        createTheHtmlOutput += '<div>';
-            //        //        createTheHtmlOutput += '<div class="date">';
-            //        //        createTheHtmlOutput += '<div>';
-            //        //        createTheHtmlOutput += '<div class="description">';
-            //        //        createTheHtmlOutput += '<div>';
-            //        //        createTheHtmlOutput += '</li>';
-            //    })
-            //    $(".js-list ul").html(createTheHtmlOutput);
+        .done(function (result) {
+            console.log(result);
+            console.log(result.length);
+            var createTheHtmlOutput = "";
+            for (i = 0; i < 10; i++) {
+                var backLoop = result.length - i;
+                console.log(result[i].username);
+                createTheHtmlOutput += '<li>';
+                createTheHtmlOutput += '<div class="username">';
+                createTheHtmlOutput += result[i].username;
+                createTheHtmlOutput += '<div>';
+                createTheHtmlOutput += '<div class="eventName">';
+                createTheHtmlOutput += result[i].eventName;
+                createTheHtmlOutput += '<div>';
+                createTheHtmlOutput += '<div class="userlocation">';
+                createTheHtmlOutput += result[i].userLocation;
+                createTheHtmlOutput += '<div>';
+                createTheHtmlOutput += '<div class="postDate">';
+                createTheHtmlOutput += result[i].postDate;
+                createTheHtmlOutput += '<div>';
+                createTheHtmlOutput += '<div class="userComment">';
+                createTheHtmlOutput += result[i].userComment;
+                createTheHtmlOutput += '<div>';
+                createTheHtmlOutput += '</li>';
+            }
+            //            $.each(result, function (dataKey, dataValue) {
+            //                console.log("inside displayComment function");
+            //                console.log(result);
+            //                createTheHtmlOutput += '<li class="result">';
+            //                createTheHtmlOutput += '<div class="username">';
+            //                createTheHtmlOutput += '<div>';
+            //                createTheHtmlOutput += '<div class="eventName">';
+            //                createTheHtmlOutput += '<div>';
+            //                createTheHtmlOutput += '<div class="userlocation">';
+            //                createTheHtmlOutput += '<div>';
+            //                createTheHtmlOutput += '<div class="postDate">';
+            //                createTheHtmlOutput += '<div>';
+            //                createTheHtmlOutput += '<div class="content">';
+            //                createTheHtmlOutput += '<div>';
+            //                createTheHtmlOutput += '</li>';
+            //            })
+            $(".js-list ul").html(createTheHtmlOutput);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -51,7 +88,7 @@ function postComment(name, content, event, searchLocation) {
     var dateString = date.toString();
     var object = {
         'username': name,
-        'userLocation': location,
+        'userLocation': searchLocation,
         'postDate': dateString,
         'eventName': event,
         'userComment': content
@@ -61,17 +98,19 @@ function postComment(name, content, event, searchLocation) {
             type: "POST",
             dataType: "json",
             data: JSON.stringify(object),
-            //        contentType: '', why do we need this one?
-            url: '/post-commet'
+            contentType: 'application/json',
+            url: '/post-comment'
         })
-        .done(function () {
+        .done(function (resultresult) {
             console.info("");
             displayComment();
+            console.log("inside post Comment");
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
             console.log(error);
             console.log(errorThrown);
+            console.log("inside error postComment AJAX")
         });
 }
 
@@ -112,8 +151,8 @@ $(document).ready(function () {
             $('.js-result').show();
             $('.js-list').show();
             $('.js-drop-comment').show();
-            $('.js-submit-comment').submit(function () {
-                event.preventDefault;
+            $('.js-comment-form').submit(function (event) {
+                event.preventDefault();
                 $('.thank-you').show();
                 var event = $("#js-event").val();
                 var name = $("#js-name").val();

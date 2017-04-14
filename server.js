@@ -11,7 +11,7 @@ const {
     DATABASE_URL, PORT
 } = require('./config');
 const {
-    comment
+    Comment
 } = require('./models');
 const app = express();
 //define usage of the app
@@ -67,9 +67,9 @@ function closeServer() {
 
 //request data from API Call
 function getData(data) {
-    console.log("inside the get data function = ", data);
+    //ask marius about how to get current date on the correct format in node
     var emitter = new events.EventEmitter();
-    unirest.get('http://api.amp.active.com/v2/search/?near=' + data + '&radius=50&country=United+States&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=c7uavra377u4dbmbkhs7h52h')
+    unirest.get('http://api.amp.active.com/v2/search/?near=' + data + '&query=hiking&radius=80&country=United+States&current_page=1&per_page=20&start_date=2017-01-01..&sort=distance&api_key=c7uavra377u4dbmbkhs7h52h')
         //        .header({
         //            'Accept': 'application/json'
         //        })
@@ -78,8 +78,7 @@ function getData(data) {
         //        })
         .header("Accept", "application/json")
         .end(function (result) {
-            //console.log(result.status, result.headers, result.body);
-            //success scenario
+
             if (result.ok) {
                 emitter.emit('end', result.body);
 
@@ -120,43 +119,101 @@ app.get('/activity/:name', function (req, res) {
 });
 
 app.get('/active', function (req, res) {
-    comment
-        .find()
-        .exec()
-        .then()
-        .catch(err => {
-            console.error(err);
-            res.status(500).json({
-                error: 'something went terribly wrong'
+    Comment.find(function (err, items) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
             });
-        });
+        }
+        res.status(200).json(items);
+    });
 });
+
+
 app.post('/post-comment', function (req, res) {
-    const requiredFields = ['username', 'userLocation', 'postDate', 'eventName', 'userComment'];
-    for (let i = 0; i < requiredFields.length; i++) {
-        const field = requiredFields[i];
+    var requiredFields = ['username', 'userLocation', 'postDate', 'eventName', 'userComment'];
+    for (var i = 0; i < requiredFields.length; i++) {
+        var field = requiredFields[i];
         if (!(field in req.body)) {
-            const message = `Missing \`${field}\` in request body`
+            var message = `Missing \`${field}\` in request body`
             console.error(message);
             return res.status(400).send(message);
         }
     }
-    comment
-        .create({
-            'username': req.body.username,
-            'userLocation': req.body.userLocation,
-            'postDate': req.body.postDate,
-            'eventName': req.body.eventName,
-            'userComment': req.body.userComment
-        })
-        .then(comment => res.status(201).json(comment.apiRepr()))
-        .catch(err => {
-            console.error(err);
-            res.status(500).json({
-                error: 'Something went wrong'
+    Comment.create({
+        username: req.body.username,
+        userLocation: req.body.userLocation,
+        postDate: req.body.postDate,
+        eventName: req.body.eventName,
+        userComment: req.body.userComment
+    }, function (err, item) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
             });
-        });
+        }
+        res.status(201).json(item);
+    });
 });
+
+//broken code
+//app.post('/post-comment', function (req, res) {
+//    const requiredFields = ['username', 'userLocation', 'postDate', 'eventName', 'userComment'];
+//    for (let i = 0; i < requiredFields.length; i++) {
+//        const field = requiredFields[i];
+//        if (!(field in req.body)) {
+//            const message = `Missing \`${field}\` in request body`
+//            console.error(message);
+//            return res.status(400).send(message);
+//        }
+//    }
+//    Comment
+//        .create({
+//            username: req.body.username,
+//            userLocation: req.body.userLocation,
+//            postDate: req.body.postDate,
+//            eventName: req.body.eventName,
+//            userComment: req.body.userComment
+//        })
+//        .then(Comment => res.status(201).json(Comment.apiRepr()))
+//        .catch(err => {
+//            console.error(err);
+//            res.status(500).json({
+//                error: 'Something went wrong'
+//            });
+//        });
+//});
+
+
+//app.post('/posts', (req, res) => {
+//    const requiredFields = ['title', 'content', 'author'];
+//    for (let i = 0; i < requiredFields.length; i++) {
+//        const field = requiredFields[i];
+//        if (!(field in req.body)) {
+//            const message = `Missing \`${field}\` in request body`
+//            console.error(message);
+//            return res.status(400).send(message);
+//        }
+//    }
+//    BlogPost
+//        .create({
+//            title: req.body.title,
+//            content: req.body.content,
+//            author: req.body.author
+//        })
+//        .then(blogPost => res.status(201).json(blogPost.apiRepr()))
+//        .catch(err => {
+//            console.error(err);
+//            res.status(500).json({
+//                error: 'Something went wrong'
+//            });
+//        });
+//
+//});
+
+
+
+
 
 
 
