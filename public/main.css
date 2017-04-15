@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    width: 100%;
+}
+
+
+/*input data*/
+
+.js-zipcode {
+    text-align: center;
+}
+
+#jsLocation {
+    border-radius: 3px;
+}
+
+
+/*return from Active list*/
+
+.js-result {
+    margin-right: 15px;
+    margin-left: 0px;
+}
+
+.active-api-call-result {
+    margin-right: 20px;
+    margin-left: 0px;
+    text-align: center;
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.description {
+    text-align: left;
+}
+
+.js-active-event-name {
+    font-weight: bolder;
+}
+
+.location {
+    font-weight: 100;
+}
+
+
+/*comment section*/
+
+
+/*form*/
+
+.js-drop-comment {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 93%;
+}
+
+#js-name,
+#js-event {
+    width: 200px;
+}
+
+#js-content {
+    width: 600px;
+}
+
+
+/*after submit and comment list*/
+
+.thank-you {
+    text-align: center;
+    font-weight: bolder;
+    padding-left: 30%;
+    width: 70%;
+}
+
+.thank-you div {
+    border-radius: 3px;
+    border: 1px solid black;
+    padding: 30px;
+}
+
+.js-list {
+    margin-right: 25px;
+}
+
+.title-footer {
+    text-align: center;
+}
+
+.comment-list {
+    display: inline-block;
+    width: 31%;
+    border: 1px solid black;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.form-element {
+    margin-top: 10px;
+}
+
+.js-submit-comment {
+    margin-top: 10px;
+}

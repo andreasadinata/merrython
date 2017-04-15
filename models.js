@@ -15,10 +15,6 @@ const CommentSchema = mongoose.Schema({
     },
     userComment: {
         type: String
-    },
-    __v: {
-        type: Number,
-        select: false
     }
 }, {
     versionKey: false
@@ -41,5 +37,4 @@ CommentSchema.methods.apiRepr = function () {
 
 module.exports = {
     Comment
-
 };
