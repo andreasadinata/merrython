@@ -113,18 +113,52 @@ describe('active-test', function () {
                 });
         });
     });
-    //    describe('Check Delete endpoint', function () {
-    //        it('should delete a post based on the id', function () {
-    //            let post;
-    //            return BlogPost.findOne().exec()
-    //                .then(_post => {
-    //                    post = _post;
-    //                    return chai.request(app).delete(`/posts/${post.id}`);
-    //                })
-    //                .then(res => {
-    //                    res.should.have.status(204);
-    //                    return BlogPost.findById(post.id);
-    //                });
+
+    describe('Test PUT endpoint', function () {
+        it('should update fields which are being sent', function () {
+            const updateData = {
+                username: 'cats cats cats',
+                eventName: 'Go run go!',
+                userComment: 'dogs dogs dogs'
+            }
+            return Comment.findOne()
+                .exec()
+                .then(post => {
+                    updateData.id = post.id;
+                    return chai.request(app)
+                        .put(`/update-comment/${post.id}`)
+                        .send(updateData);
+                })
+                .then(res => {
+                    res.should.have.status(201);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    res.body.username.should.equal(updateData.username);
+                    res.body.eventName.should.equal(updateData.eventName);
+                    res.body.userComment.should.equal(updateData.userComment);
+                    return Comment.findById(res.body.id).exec();
+                })
+                .then(post => {
+                    post.username.should.equal(updateData.username);
+                    post.eventName.should.equal(updateData.eventName);
+                    post.userComment.should.equal(updateData.userComment);
+                });
+        });
+    });
+    describe('Check Delete endpoint', function () {
+        it('should delete a post based on the id', function () {
+            let post;
+            return Comment.findOne().exec()
+                .then(_post => {
+                    post = _post;
+                    return chai.request(app).delete(`/delete-comment/${post.id}`);
+                })
+                .then(res => {
+                    res.should.have.status(204);
+                    return Comment.findById(post.id);
+                });
+        });
+    });
 
     afterEach(function () {
         return tearDownDb();
