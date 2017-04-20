@@ -1,9 +1,13 @@
 #Merrython
 Thinkful (https://www.thinkful.com/) second portofolio project. Using Active's API to find any outdoor activities around the user's area
 
-![home-page](https://andreasadinata.github.io/find-a-dj-api-capstone-project/home-page-screenshot.png)
+![home-page](https://andreasadinata.github.io/merrython-app/public/screenshot/Homepage.png)
 
-![results-page](https://andreasadinata.github.io/find-a-dj-api-capstone-project/result-screenshot.png)
+![results-page](https://andreasadinata.github.io/merrython-app/public/screenshot/Active-call-result.png)
+
+![Comment-section](https://andreasadinata.github.io/merrython-app/public/screenshot/Drop-comment-section.png)
+
+![After-comment-section](https://andreasadinata.github.io/merrython-app/public/screenshot/Thank-you-and-comment-list.png)
 
 ##Introduction
 The name of Merrython is coming from "Merry" and "Marathon". The app will not only show a marathon event.
