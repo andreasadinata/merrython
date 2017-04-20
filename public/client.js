@@ -8,7 +8,9 @@ function displaySearchResults(data) {
                 if (dataValue.assetName !== 'Price') {
                     if (dataValue.assetDescriptions[0].description !== "") {
                         var utcDate = dataValue.activityStartDate;
+                        console.log(dataValue);
                         buildTheHtmlOutput += '<li class="active-api-call-result">';
+                        //homePageUrlAdr//
                         buildTheHtmlOutput += '<div class="js-active-event-name">';
                         buildTheHtmlOutput += dataValue.assetName;
                         buildTheHtmlOutput += '</div>';
@@ -209,21 +211,21 @@ function callApi(inputData) {
 
 
 $(document).ready(function () {
-    console.log("blah");
     $('.js-result').hide();
     $('.js-list').hide();
     $('.js-drop-comment').hide();
     $('.thank-you').hide();
+
     $('.js-zipcode').submit(function (event) {
-        $('.js-top').css("margin-top", "10px");
-        $('.js-top').css("font-size", "20px");
-        $('.js-zipcode').css("font-size", "12px");
-        $('body').css("background-image", "url(images/qp3kOx.jpg)");
         event.preventDefault();
         var searchLocation = $("#jsLocation").val();
-        if (searchLocation === "") {
+        if (searchLocation == "") {
             alert("Input the location");
         } else {
+            $('.js-top').css("margin-top", "10px");
+            $('.js-top').css("font-size", "20px");
+            $('.js-zipcode').css("font-size", "12px");
+            $('body').css("background-image", "url(images/qp3kOx.jpg)");
             callApi(searchLocation);
             $('.js-result').show();
             $('.js-list').show();
@@ -236,8 +238,7 @@ $(document).ready(function () {
                 var content = $("#js-content").val();
                 if (event === "" || name === "" || content === "") {
                     alert("Input the data");
-                }
-                if (content.length > 160) {
+                } else if (content.length > 160) {
                     alert("Characters more than 160");
                 } else {
                     $('.js-comment-form').hide();
@@ -246,16 +247,10 @@ $(document).ready(function () {
                 }
             });
         };
-    }); //closing sumit
+    });
 
 
 
-});
-
-$('.js-list').on('click', '.updateBox', function (event) {
-    console.log("inside the updateBox trigger");
-    var IdToBeUpdated = $(this).parent().find('.hiddenId').val();
-    updateData(IdToBeUpdated);
 });
 
 $('.js-list').on('click', '.deleteBox', function (event) {

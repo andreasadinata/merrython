@@ -16,7 +16,7 @@ body {
     font-family: Pacifico;
     font-size: 40px;
     text-align: center;
-    margin-top: 17%;
+    margin-top: 15%;
     margin-bottom: 0px;
     padding: 0px;
     text-shadow: 1.5px 1.5px grey;
@@ -54,8 +54,8 @@ body {
 /*return from Active list*/
 
 .js-result {
-    margin-right: 15px;
-    margin-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .active-api-call-result {
@@ -152,7 +152,8 @@ label {
     padding: 30px;
     font-weight: bolder;
     font-size: 30px;
-    background-color: forestgreen;
+    background-image: url(images/transparent.jpg);
+    color: white;
 }
 
 
@@ -160,7 +161,8 @@ label {
 
 .js-list {
     margin-top: 30px;
-    margin-right: 25px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .comment-list {
@@ -172,9 +174,10 @@ label {
     border-radius: 3px;
     padding: 10px;
     height: 230px;
-    background-color: white;
+    background-image: url(images/transparent.jpg);
     font-family: Quicksand;
     font-weight: 100;
+    color: white;
 }
 
 .deleteBox {
@@ -184,20 +187,22 @@ label {
     margin-right: auto;
     font-weight: bolder;
     background: none!important;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 3px;
     padding: 5px!important;
     font-family: Pacifico;
     cursor: pointer;
-    color: black;
+    color: white;
     text-align: center;
     font-size: 12px;
 }
 
 .userComment {
-    margin-top: 16px;
+    margin-top: 10px;
+    padding-top: 5px;
     height: 65px;
     overflow-x: auto;
+    border-top: 1px solid white;
 }
 
 .form-element {
@@ -232,14 +237,20 @@ label {
     width: 20%;
 }
 
+
+/*
 .title-footer:hover {
     color: white;
 }
+*/
 
 
 /*responsive*/
 
 @media only screen and (max-width: 1000px) {
+    .thank-you div {
+        font-size: 20px;
+    }
     .comment-list {
         margin-left: auto;
         margin-right: 20px;
@@ -255,9 +266,13 @@ label {
 }
 
 @media only screen and (max-width: 600px) {
+    .thank-you div {
+        font-size: 15px;
+        padding: 25px;
+    }
     .comment-list {
         margin-left: auto;
-        margin-right: 20px;
+        margin-right: auto;
         width: 95%;
         display: block;
     }
