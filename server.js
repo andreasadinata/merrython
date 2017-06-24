@@ -80,11 +80,9 @@ function getData(data) {
 if (require.main === module) {
     runServer().catch(err => console.error(err));
 };
-
+//    external api function call and response
 app.get('/activity/:name', function (req, res) {
 
-
-    //    external api function call and response
 
     var searchReq = getData(req.params.name);
 
@@ -100,6 +98,7 @@ app.get('/activity/:name', function (req, res) {
 
 });
 
+//get comment from database
 app.get('/active', function (req, res) {
     Comment.find(function (err, items) {
         if (err) {

@@ -91,15 +91,7 @@ function displayComment() {
                 createTheHtmlOutput += '<div class="userComment">';
                 createTheHtmlOutput += result[backLoop].userComment;
                 createTheHtmlOutput += '</div>';
-
-                //                createTheHtmlOutput += '<div class="hiddenId" type="hidden">';
-                //                createTheHtmlOutput += result[backLoop]._id
-                //                createTheHtmlOutput += '<div>';
-
-                //                createTheHtmlOutput += '<form class="delete-form">';
                 createTheHtmlOutput += '<input class="hiddenId" type="hidden" value="' + result[backLoop]._id + '">';
-
-
                 createTheHtmlOutput += '<button class="deleteBox">';
                 createTheHtmlOutput += 'Delete';
                 createTheHtmlOutput += '</button>';
@@ -223,8 +215,9 @@ $(document).ready(function () {
             alert("Input the location");
         } else {
             $('.js-top').css("margin-top", "10px");
-            $('.js-top').css("font-size", "20px");
+            $('.js-top').css("font-size", "25px");
             $('.js-zipcode').css("font-size", "12px");
+
             $('body').css("background-image", "url(images/qp3kOx.jpg)");
             callApi(searchLocation);
             $('.js-result').show();

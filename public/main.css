@@ -1,6 +1,18 @@
 * {
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: Josefin Sans;
+    font-size: 100%;
+    /*The box-sizing property is used to tell the browser what the sizing properties (width and height) should include border-box.*/
+    box-sizing: border-box;
+    /*reset Chrome user agent styles*/
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-before: 0px;
+    -webkit-padding-after: 0px;
+    -webkit-padding-start: 0px;
+    -webkit-padding-end: 0px;
 }
 
 body {
@@ -12,11 +24,26 @@ body {
     background-attachment: fixed;
 }
 
+a,
+a:visited {
+    color: yellow;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.js-bar {
+    width: 80%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
 .js-top {
     font-family: Pacifico;
-    font-size: 40px;
+    font-size: 70px;
     text-align: center;
-    margin-top: 15%;
+    margin-top: 6%;
     margin-bottom: 0px;
     padding: 0px;
     text-shadow: 1.5px 1.5px grey;
@@ -25,7 +52,10 @@ body {
 .js-zipcode label {
     display: block;
     width: 100%;
-    font-family: Pacifico;
+/*    font-family: Pacifico;*/
+    font-size: 20px;
+    margin-bottom: 15px;
+    margin-top: 10px
 }
 
 
@@ -36,8 +66,11 @@ body {
 }
 
 #jsLocation {
+    width: 175px;
     border-radius: 3px;
     margin: 0px;
+    height: 30px;
+    font-size: 18px;
 }
 
 .js-submit-search {
@@ -45,15 +78,17 @@ body {
     border-radius: 3px;
     border: 1px solid black;
     padding: 2px!important;
-    font-family: Pacifico;
+/*    font-family: Pacifico;*/
     cursor: pointer;
     color: black;
+    font-size: 16px;
 }
 
 
 /*return from Active list*/
 
 .js-result {
+    margin-top: 80px!important;
     margin-right: auto;
     margin-left: auto;
 }
@@ -64,14 +99,18 @@ body {
     text-align: center center;
     list-style: none;
     border: 1px solid black;
-    background-image: url(../images/transparent.jpg);
-    border-radius: 0.5rem;
+    /*    background-image: url(../images/transparent.jpg);*/
+    border-radius: 3px;
     padding: 15px;
     margin-bottom: 30px;
     width: 80%;
     display: block;
     height: 350px;
     color: white;
+    background-color: black;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    /* For IE8 and earlier */
 }
 
 .description {
@@ -107,24 +146,28 @@ body {
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 10px;
-    width: 93%;
+    width: 80%;
 }
 
 .js-comment-form {
-    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    /*    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));*/
+    background-color: black;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
     color: white;
     padding: 10px;
     border: 1px solid black;
+    border-radius: 3px;
     border-radius: 3px;
 }
 
 #js-name,
 #js-event {
-    width: 300px;
+    width: 100%
 }
 
 #js-content {
-    width: 800px;
+    width: 100%;
 }
 
 label {
@@ -140,9 +183,9 @@ label {
 
 .thank-you {
     text-align: center;
-    font-weight: bolder;
+    font-weight: bold;
     padding-left: 30%;
-    width: 70%;
+    width: 80%;
 }
 
 .thank-you div {
@@ -152,8 +195,11 @@ label {
     padding: 30px;
     font-weight: bolder;
     font-size: 30px;
-    background-image: url(images/transparent.jpg);
+    /*    background-image: url(images/transparent.jpg);*/
     color: white;
+    background-color: black;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
 }
 
 
@@ -163,26 +209,36 @@ label {
     margin-top: 30px;
     margin-right: auto;
     margin-left: auto;
+    width: 80%;
+}
+
+.js-list ul {
+    text-align: center;
 }
 
 .comment-list {
     display: inline-block;
-    width: 30%;
+    width: 31%;
     border: 1px solid black;
-    margin-right: 20px;
+    /*    text-align: center;*/
+    margin: 6px;
     margin-bottom: 20px;
     border-radius: 3px;
     padding: 10px;
-    height: 230px;
-    background-image: url(images/transparent.jpg);
+    height: 270px;
+    /*    background-image: url(images/transparent.jpg);*/
     font-family: Quicksand;
     font-weight: 100;
     color: white;
+    background-color: black;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    text-align: left;
 }
 
 .deleteBox {
     display: block;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     font-weight: bolder;
@@ -190,11 +246,11 @@ label {
     border: 1px solid white;
     border-radius: 3px;
     padding: 5px!important;
-    font-family: Pacifico;
+/*    font-family: Pacifico;*/
     cursor: pointer;
     color: white;
     text-align: center;
-    font-size: 12px;
+    font-size: 20px;
 }
 
 .userComment {
@@ -216,7 +272,7 @@ label {
     border: 1px solid white;
     border-radius: 3px;
     padding: 5px!important;
-    font-family: Pacifico;
+/*    font-family: Pacifico;*/
     cursor: pointer;
     color: white;
     text-align: center;
@@ -229,43 +285,18 @@ label {
 /*title of what other people*/
 
 .title-footer {
-    font-family: Pacifico;
-    font-size: 20px;
+/*    font-family: Pacifico;*/
+    font-size: 30px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 20%;
+    width: 40%;
 }
-
-
-/*
-.title-footer:hover {
-    color: white;
-}
-*/
 
 
 /*responsive*/
 
-@media only screen and (max-width: 1000px) {
-    .thank-you div {
-        font-size: 20px;
-    }
-    .comment-list {
-        margin-left: auto;
-        margin-right: 20px;
-        width: 46%;
-    }
-    #js-name,
-    #js-event {
-        width: 200px;
-    }
-    #js-content {
-        width: 500px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     .thank-you div {
         font-size: 15px;
         padding: 25px;
@@ -275,13 +306,6 @@ label {
         margin-right: auto;
         width: 95%;
         display: block;
-    }
-    #js-name,
-    #js-event {
-        width: 100px;
-    }
-    #js-content {
-        width: 250px;
     }
 }
 
@@ -340,7 +364,8 @@ label {
     background: none!important;
     border: none;
     padding: 2px!important;
-    font-family: Pacifico;
+/*    font-family: Pacifico;*/
     cursor: pointer;
     color: black;
+    font-size: 15px;
 }
