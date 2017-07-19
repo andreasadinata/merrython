@@ -1,5 +1,6 @@
 // html output rendering on top
 function displaySearchResults(data) {
+    console.log("Tai")
     var buildTheHtmlOutput = "";
     var assetNamesDisplayedSoFar = [];
     $.each(data.results, function (dataKey, dataValue) {
@@ -8,7 +9,6 @@ function displaySearchResults(data) {
                 if (dataValue.assetName !== 'Price') {
                     if (dataValue.assetDescriptions[0].description !== "") {
                         var utcDate = dataValue.activityStartDate;
-                        console.log(dataValue);
                         buildTheHtmlOutput += '<li class="active-api-call-result">';
                         //homePageUrlAdr//
                         buildTheHtmlOutput += '<div class="js-active-event-name">';
@@ -211,6 +211,7 @@ $(document).ready(function () {
     $('.js-zipcode').submit(function (event) {
         event.preventDefault();
         var searchLocation = $("#jsLocation").val();
+        console.log(searchLocation);
         if (searchLocation == "") {
             alert("Input the location");
         } else {

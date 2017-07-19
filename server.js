@@ -82,10 +82,7 @@ if (require.main === module) {
 };
 //    external api function call and response
 app.get('/activity/:name', function (req, res) {
-
-
     var searchReq = getData(req.params.name);
-
     //get the data from the first api call
     searchReq.on('end', function (item) {
         res.json(item);
@@ -95,7 +92,6 @@ app.get('/activity/:name', function (req, res) {
     searchReq.on('error', function (code) {
         res.sendStatus(code);
     });
-
 });
 
 //get comment from database
